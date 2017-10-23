@@ -1,0 +1,9 @@
+{
+  "name": "Simple Blog",
+  "version": "1.0",
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "jQuery": "^3.2.1",
+    "ckeditor": "4.5.7"
+  }
+}

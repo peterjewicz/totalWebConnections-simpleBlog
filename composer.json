@@ -1,0 +1,14 @@
+{
+    "name": "totalwebconnections/simple-blog",
+    "description": "A simple blog package that can be dropped into an existing or new Laravel 5 application.",
+    "type": "Blog",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "peterjewicz",
+            "email": "peterjewicz@totalwebconnections.com"
+        }
+    ],
+    "require": {
+    }
+}
