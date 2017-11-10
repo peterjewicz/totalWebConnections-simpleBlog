@@ -20,7 +20,7 @@ class blogSettings
         
 
         if($settings === null){
-            return view('simpleBlog::register');
+            return redirect('blog/register');
         }
         return $next($request);
     }

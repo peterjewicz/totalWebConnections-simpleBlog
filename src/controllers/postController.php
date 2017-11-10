@@ -25,17 +25,35 @@ class postController extends Controller
         return view('simpleBlog::home')->with('posts', $posts);
     }
 
+    public function editPost($id, Request $request){
+        $post = Post::find($id);
+        $post->post = json_decode($post->post);
+
+        $response = $request->session()->get('status');
+
+
+        return view('simpleBlog::edit')->with('post', $post)->with('response', $response);
+    }
+
+    public function confirmEdit(Request $request){
+        $post = Post::find($_POST['postId']);
+        $title = $_POST['title'];
+        $imgUrl = $_POST['mainImage'];
+        $postText = json_encode(htmlspecialchars($_POST['post']));
+        $post->title = $title;
+        $post->post = $postText;
+        $post->imageUrl = $imgUrl;
+        $post->save();
+        $request->session()->flash('status', 'Post Updated!');
+        return redirect('blog/edit/' . $_POST['postId']);
+    }
+
 
 
     public function savePost(Request $request){
         $title = $_POST['title'];
         $imgUrl = $_POST['mainImage'];
         $postText = json_encode(htmlspecialchars($_POST['post']));
-        // $post = $_POST['post'];
-        // $post = htmlspecialchars($request->input('post'));
-        // $imgUrl = "http://www.totalwebconnections.com/images/logo.png";
-        // echo($post);
-        // var_dump($post);die;
         $post = new Post();
         $post->title = $title;
         $post->post = $postText;

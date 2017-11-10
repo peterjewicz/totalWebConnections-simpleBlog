@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Dashboard</title>
-    <!-- TODO Change this to use sass so we can compile a 
+    <!-- TODO Change this to use sass so we can compile a
     single CSS file to include for back-end styles -->
     <link rel="stylesheet" href="{{ asset('totalWebConnections/simpleBlog/bower/bootstrap/dist/css/bootstrap.min.css') }}">
 </head>
@@ -22,7 +22,7 @@
                 <tr>
                     <td>{{$post->title}}</td>
                     <td>{{$post->created_at}}</td>
-                    <td>Edit icon here</td>
+                    <td><a href="edit/{{$post->id}}">Edit icon here</a></td>
                 </tr>
             @endforeach
             </tbody>

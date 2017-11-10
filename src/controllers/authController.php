@@ -15,6 +15,9 @@ class authController extends Controller
     public function displayLogin(){
         return view('simpleBlog::login');
     }
+    public function displayRegister(){
+        return view('simpleBlog::register');
+    }
 
     public function login(){
         $username = $_POST['username'];
