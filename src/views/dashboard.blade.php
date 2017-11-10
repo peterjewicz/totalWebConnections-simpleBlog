@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="{{ asset('totalWebConnections/simpleBlog/bower/bootstrap/dist/css/bootstrap.min.css') }}">
 </head>
 <body>
-    <div class="mainWrapper">
+    <div class="mainWrapper container">
         <a href="new"><button type="button" class="btn btn-success">New</button></a>
         <table class="table table-hover">
             <thead>
@@ -22,7 +22,7 @@
                 <tr>
                     <td>{{$post->title}}</td>
                     <td>{{$post->created_at}}</td>
-                    <td><a href="edit/{{$post->id}}">Edit icon here</a></td>
+                    <td><a href="edit/{{$post->id}}">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                 </tr>
             @endforeach
             </tbody>
