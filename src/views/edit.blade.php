@@ -20,6 +20,7 @@
 		            <textarea id="article-ckeditor" name="post">{!! html_entity_decode($post->post) !!}</textarea>
 		            <input type="text" name="mainImage" value="{{$post->imageUrl}}" placeholder="Main Image" />
 					<input type="hidden" name="postId" value="{{$post->id}}" />
+					<input type="text" name="tags" value="{{$post->tagList}}" />
 		            <button type="submit">Update</button>
 		            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 		        </form>

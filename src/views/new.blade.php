@@ -16,6 +16,7 @@
 		            <input type="text" name="title" placeholder="Title" />
 		            <textarea id="article-ckeditor" name="post"></textarea>
 		            <input type="text" name="mainImage" placeholder="Main Image" />
+					<input type="text" name="tags" placeholder="tags (comma separated)" />
 		            <button type="submit">Add</button>
 		            <input type="hidden" name="_token" value="{{ csrf_token() }}">
 		        </form>

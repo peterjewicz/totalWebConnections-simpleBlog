@@ -27,6 +27,14 @@ class postController extends Controller
 
     public function editPost($id, Request $request){
         $post = Post::find($id);
+        $tagList = '';
+        foreach ($post->tags as $tag) {
+            $tagList .= $tag->tag_title . ',';
+        }
+        //remove last comma
+        $tagList = substr($tagList, 0, -1);
+        $post->tagList = $tagList;
+        
         $post->post = json_decode($post->post);
 
         $response = $request->session()->get('status');
@@ -54,12 +62,15 @@ class postController extends Controller
         $title = $_POST['title'];
         $imgUrl = $_POST['mainImage'];
         $postText = json_encode(htmlspecialchars($_POST['post']));
+        $tags = $_POST['tags'];
+
         $post = new Post();
         $post->title = $title;
         $post->post = $postText;
         $post->imageUrl = $imgUrl;
         $post->save();
 
+        $post->generateTags($tags, $post->id);
         //TODO add a redirect with success
         var_dump("success!"); die;
     }
