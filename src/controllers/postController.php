@@ -5,6 +5,7 @@ namespace totalWebConnections\simpleBlog\controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use totalWebConnections\simpleBlog\models\Post;
+use totalWebConnections\simpleBlog\models\Tag;
 
 class postController extends Controller
 {
@@ -34,7 +35,7 @@ class postController extends Controller
         //remove last comma
         $tagList = substr($tagList, 0, -1);
         $post->tagList = $tagList;
-        
+
         $post->post = json_decode($post->post);
 
         $response = $request->session()->get('status');
@@ -47,6 +48,10 @@ class postController extends Controller
         $post = Post::find($_POST['postId']);
         $title = $_POST['title'];
         $imgUrl = $_POST['mainImage'];
+        $tags = array_filter(explode(",", $_POST['tags']));
+
+        Tag::editExistingTags($tags, $post);
+
         $postText = json_encode(htmlspecialchars($_POST['post']));
         $post->title = $title;
         $post->post = $postText;
