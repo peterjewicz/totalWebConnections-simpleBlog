@@ -23,6 +23,7 @@ Route::group(['middleware' => ['web']], function () {
 
     //front end non-auth rouutes
     Route::get('blog/{title}', 'totalWebConnections\simpleBlog\controllers\postController@showPost');
+    Route::get('blog/tag/{tag}', 'totalWebConnections\simpleBlog\controllers\postController@showBlog');
     Route::get('blog', 'totalWebConnections\simpleBlog\controllers\postController@showBlog');
 
 });

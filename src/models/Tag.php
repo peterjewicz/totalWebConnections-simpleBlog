@@ -9,6 +9,10 @@ class Tag extends Model
     protected $table = 'simpleBlog_tags';
     protected $primaryKey = 'tag_id';
 
+    public function posts(){
+        return $this->belongsToMany('totalWebConnections\simpleBlog\Models\Post', 'simpleBlog_tagRelationships', 'tag_id', 'post_id');
+    }
+
     /**
     * Checks to see if a tag already exists
     * Returns the tag id on success or false

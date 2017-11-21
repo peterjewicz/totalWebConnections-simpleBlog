@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use totalWebConnections\simpleBlog\models\Post;
 use totalWebConnections\simpleBlog\models\Tag;
+use totalWebConnections\simpleBlog\models\TagRelationship;
 
 class postController extends Controller
 {
@@ -18,8 +19,18 @@ class postController extends Controller
         return view('simpleBlog::new');
     }
 
-    public function showBlog(){
-        $posts = Post::all();
+    public function showBlog($tag = ""){
+        if($tag){
+            $tag = Tag::where('tag_title', $tag)->first();
+
+            $posts = array();
+            foreach($tag->posts as $post){
+                array_push($posts, $post);
+            }
+        } else {
+            $posts = Post::all();
+        }
+
         foreach($posts as $post){
             $post->post = json_decode($post->post);
         }
