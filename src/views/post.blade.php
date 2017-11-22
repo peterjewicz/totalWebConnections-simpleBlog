@@ -2,7 +2,8 @@
 <html>
 <head>
 	<title>{{$post->title}}</title>
-    <!-- TODO Change this to use sass so we can compile a 
+	<meta name="description" content="{{$post->metaDescription}}"/>
+    <!-- TODO Change this to use sass so we can compile a
     single CSS file to include for back-end styles -->
     <link rel="stylesheet" href="{{ asset('totalWebConnections/simpleBlog/bower/bootstrap/dist/css/bootstrap.min.css') }}">
 </head>

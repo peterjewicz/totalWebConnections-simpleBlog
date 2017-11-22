@@ -18,6 +18,8 @@ class SimpleBlogCreatePostsTable extends Migration
             $table->string('title');
             $table->text('post');
             $table->text('imageUrl');
+            $table->string('customUrl');
+            $table->text('metaDescription');
             $table->timestamps();
         });
     }

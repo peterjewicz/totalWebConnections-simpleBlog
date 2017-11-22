@@ -20,6 +20,7 @@ class postController extends Controller
     }
 
     public function showBlog($tag = ""){
+        //tag categories use the same display page just select differenly
         if($tag){
             $tag = Tag::where('tag_title', $tag)->first();
 
@@ -60,6 +61,8 @@ class postController extends Controller
         $title = $_POST['title'];
         $imgUrl = $_POST['mainImage'];
         $tags = array_filter(explode(",", $_POST['tags']));
+        $customUrl = $_POST['customUrl'];
+        $metaDescription = $_POST['metaDescription'];
 
         Tag::editExistingTags($tags, $post);
 
@@ -67,6 +70,8 @@ class postController extends Controller
         $post->title = $title;
         $post->post = $postText;
         $post->imageUrl = $imgUrl;
+        $post->customUrl = $customUrl;
+        $post->metaDescription = $metaDescription;
         $post->save();
         $request->session()->flash('status', 'Post Updated!');
         return redirect('blog/edit/' . $_POST['postId']);
@@ -75,15 +80,20 @@ class postController extends Controller
 
 
     public function savePost(Request $request){
+        //TODO change these to use built in Laravel Request
         $title = $_POST['title'];
         $imgUrl = $_POST['mainImage'];
         $postText = json_encode(htmlspecialchars($_POST['post']));
         $tags = $_POST['tags'];
+        $customUrl = $_POST['customUrl'];
+        $metaDescription = $_POST['metaDescription'];
 
         $post = new Post();
         $post->title = $title;
         $post->post = $postText;
         $post->imageUrl = $imgUrl;
+        $post->customUrl = $customUrl;
+        $post->metaDescription = $metaDescription;
         $post->save();
 
         $post->generateTags($tags, $post->id);
@@ -92,9 +102,17 @@ class postController extends Controller
     }
 
     public function showPost($title){
-        $title = str_replace('-', ' ', $title);
-        $post = Post::where('title', $title)->first();
 
+        //check for the meta title first
+        $post = Post::where('customUrl', $title)->first();
+
+        //if not found default to post titles
+        if(!$post){
+            $title = str_replace('-', ' ', $title);
+            $post = Post::where('title', $title)->first();
+        }
+
+        //neither of those work so 404
         if($post === null){
             //todo add 404 redirect
             echo('404 here');
