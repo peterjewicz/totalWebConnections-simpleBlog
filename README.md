@@ -1,8 +1,9 @@
 "totalwebconnections/simple-blog": "dev-master"
 "psr-4": {
-            "App\\": "app/",
-            "totalWebConnections\\simpleBlog\\": "vendor/totalWebConnections/simple-blog/src"
-        }
+    "App\\": "app/",
+    "totalWebConnections\\simpleBlog\\": "vendor/totalWebConnections/simple-blog/src/"
+
+}
 
 
 The bootstrap/cache directory must be present and writable?
