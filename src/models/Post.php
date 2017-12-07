@@ -40,8 +40,30 @@ class Post extends Model
         }
     }
 
-    public function getExcept(){
-        return str_limit(strip_tags(html_entity_decode($this->post)), $limit = 200, $end = '...');
+
+    /**
+    * gets the post exceprt
+    * @param int excerptLength length of exceprt (Default 200)
+    * @return string
+    *
+    */
+    public function getExcept($excerptLength = 200){
+        return str_limit(strip_tags(html_entity_decode($this->post)), $limit = $excerptLength, $end = '...');
     }
+
+    /**
+    * Gets the url for the post based on title or custom url
+    * @return string
+    */
+    public function getPostUrl(){
+        if($this->customUrl){
+            return $this->customUrl;
+        } else {
+            return str_replace(' ', '-', $this->title);
+        }
+    }
+
+
+
 
 }

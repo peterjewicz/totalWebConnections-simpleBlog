@@ -43,6 +43,7 @@
                     <div class="content">
                         {{ $post->getExcept() }}
                     </div>
+					<a href="blog/{{ $post->getPostUrl() }}"><button class="btn btn-primary">Learn More</button></a>
                 </div>
             </div>
             @endforeach
