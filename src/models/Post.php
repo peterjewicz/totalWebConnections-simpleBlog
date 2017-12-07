@@ -40,4 +40,8 @@ class Post extends Model
         }
     }
 
+    public function getExcept(){
+        return str_limit(strip_tags(html_entity_decode($this->post)), $limit = 200, $end = '...');
+    }
+
 }

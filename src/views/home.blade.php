@@ -2,7 +2,7 @@
 <html>
 <head>
 	<title>Blog Title</title>
-    <!-- TODO Change this to use sass so we can compile a 
+    <!-- TODO Change this to use sass so we can compile a
     single CSS file to include for back-end styles -->
     <link rel="stylesheet" href="{{ asset('totalWebConnections/simpleBlog/bower/bootstrap/dist/css/bootstrap.min.css') }}">
 </head>
@@ -41,7 +41,7 @@
                 <div class="col-sm-6">
                     <h1>{{$post->title}}</h1>
                     <div class="content">
-                        {!! html_entity_decode($post->post) !!}
+                        {{ $post->getExcept() }}
                     </div>
                 </div>
             </div>
