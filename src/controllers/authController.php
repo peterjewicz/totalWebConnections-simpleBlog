@@ -1,10 +1,10 @@
 <?php
 
-namespace totalWebConnections\simpleBlog\controllers;
+namespace totalWebConnections\simpleBlog\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use totalWebConnections\simpleBlog\models\User;
+use totalWebConnections\simpleBlog\Models\User;
 use Auth;
 use Hash;
 use DB;
@@ -30,7 +30,7 @@ class authController extends Controller
             return redirect('blog/dashboard');
         }
         echo('login failed');
-        
+
     }
 
     public function register(){

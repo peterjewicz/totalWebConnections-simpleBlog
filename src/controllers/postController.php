@@ -1,12 +1,12 @@
 <?php
 
-namespace totalWebConnections\simpleBlog\controllers;
+namespace totalWebConnections\simpleBlog\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use totalWebConnections\simpleBlog\models\Post;
-use totalWebConnections\simpleBlog\models\Tag;
-use totalWebConnections\simpleBlog\models\TagRelationship;
+use totalWebConnections\simpleBlog\Models\Post;
+use totalWebConnections\simpleBlog\Models\Tag;
+use totalWebConnections\simpleBlog\Models\TagRelationship;
 
 class postController extends Controller
 {

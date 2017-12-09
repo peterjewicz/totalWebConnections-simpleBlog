@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace totalWebConnections\simpleBlog\Controllers;
 
 use Illuminate\Http\Request;
 
