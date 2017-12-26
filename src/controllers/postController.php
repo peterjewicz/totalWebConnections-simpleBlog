@@ -27,6 +27,9 @@ class postController extends Controller
             $posts = array();
             foreach($tag->posts as $post){
                 array_push($posts, $post);
+
+                //reverse the posts to show newest first
+                $posts = array_reverse($posts);
             }
         } else {
             $posts = Post::all();
@@ -35,6 +38,8 @@ class postController extends Controller
         foreach($posts as $post){
             $post->post = json_decode($post->post);
         }
+
+        $posts = $posts->reverse();
         return view('simpleBlog::home')->with('posts', $posts);
     }
 
