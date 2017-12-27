@@ -26,4 +26,13 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('blog/tag/{tag}', 'totalWebConnections\simpleBlog\controllers\postController@showBlog');
     Route::get('blog', 'totalWebConnections\simpleBlog\controllers\postController@showBlog');
 
+
+
+    //**************MEDIA ROUTES**************
+    // Route::get('blog/media', 'totalWebConnections\simpleBlog\controllers\mediaManagerController@mediaDashboard');
+    Route::get('blog/media/show', 'totalWebConnections\simpleBlog\controllers\mediaManagerController@mediaDashboard');
+        //add new
+    Route::get('blog/media/new', 'totalWebConnections\simpleBlog\controllers\mediaManagerController@addMediaView');
+    Route::post('blog/media/new', 'totalWebConnections\simpleBlog\controllers\mediaManagerController@addMedia');
+
 });
