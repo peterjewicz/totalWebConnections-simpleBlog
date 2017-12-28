@@ -1,3 +1,8 @@
+Simple Blog is a simple blogging platform that can be dropped into an existig laravel project.
+
+It currently requires having s3 set up to store images and media.
+
+
 "totalwebconnections/simple-blog": "dev-master"
 "psr-4": {
     "App\\": "app/",

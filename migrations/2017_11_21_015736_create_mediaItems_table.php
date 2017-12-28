@@ -13,7 +13,13 @@ class CreateMediaItemsTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('simpleBlog_mediaItems', function (Blueprint $table) {
+            $table->increments('media_id')->index();
+            $table->string('media_title')->nullable();
+            $table->string('media_alt');
+            $table->string('media_url');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +29,6 @@ class CreateMediaItemsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('simpleBlog_mediaItems');
     }
 }

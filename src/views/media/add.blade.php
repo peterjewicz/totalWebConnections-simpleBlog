@@ -11,6 +11,9 @@
 		<form method="POST" action="new" enctype="multipart/form-data">
 
 			<input type="file" name="media">
+
+			<input type="text" name="alt" placeholder="Image Alt Tag" />
+			<input type="text" name="title" placeholder="Image Title" />
 			{!! csrf_field() !!}
         	<button type="submit" class="btn btn-success">Add</button>
 		</form>

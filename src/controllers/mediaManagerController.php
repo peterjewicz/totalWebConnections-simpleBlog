@@ -2,10 +2,14 @@
 
 namespace totalWebConnections\simpleBlog\Controllers;
 
+//Lavavel includes
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+//developer made
+use totalWebConnections\simpleBlog\Models\Media;
 
+//3rd party
 use Illuminate\Support\Facades\Storage;
 use Aws\S3\S3Client;
 use League\Flysystem\AwsS3v3\AwsS3Adapter;
@@ -28,14 +32,22 @@ class mediaManagerController extends Controller
         //TODO redirect here
 
         $path = Storage::disk('s3')->putFile('media', $request->file('media'));
-        echo($path);
+        $mediaItem = new Media;
+        $mediaItem->media_alt = $request->alt;
+        $mediaItem->media_title = $request->title;
+        $mediaItem->media_url = $path;
+        $mediaItem->save();
         echo('Image Saved');
     }
 
 
     public function mediaDashboard() {
-        $files = Storage::disk('s3')->url('media/wfirM3k5gTxkighrBFonDmXJsvBZUSfWICTTtnXP.png');
-        var_dump($files);
-        echo('<img src="'.$files.'" />');
+
+        $mediaItems = Media::all();
+
+        foreach($mediaItems as $media) {
+            $media->imageUrl = Storage::disk('s3')->url($media->media_url);
+        }
+        return view('simpleBlog::media/dashboard')->with('mediaItems', $mediaItems);
     }
 }
