@@ -28,6 +28,11 @@ class mediaManagerController extends Controller
     }
 
 
+    /**
+    * Saves a media item to a Post
+    * @param Request $request request object contain image data
+    * @return status code (200 for success XXX for failure)
+    */
     public function addMedia(Request $request) {
         //TODO redirect here
 

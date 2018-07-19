@@ -14,6 +14,7 @@
             <tr>
                 <th>Title</th>
                 <th>Posted</th>
+								<th>Status</th>
                 <th>Edit</th>
             </tr>
             </thead>
@@ -22,6 +23,7 @@
                 <tr>
                     <td>{{$post->title}}</td>
                     <td>{{$post->created_at}}</td>
+										<td>{{ $post->published == 1 ? 'Published' : 'Draft' }}</td>
                     <td><a href="edit/{{$post->id}}">Edit <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                 </tr>
             @endforeach

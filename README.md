@@ -16,6 +16,7 @@ The bootstrap/cache directory must be present and writable?
 
 
 up the databases: php artisan migrate --path=vendor/totalwebconnections/simple-blog/migrations/
+All tables are prefixed with "simpleBlog_"
 
 add to providers: totalWebConnections\simpleBlog\simpleBlogServiceProvider::class,
 
