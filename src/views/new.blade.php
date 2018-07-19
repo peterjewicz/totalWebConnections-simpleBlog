@@ -29,6 +29,10 @@
 						<label for="metaDescription">Meta Description</label></br>
 						<textarea name="metaDescription"></textarea>
 					</div>
+					<div class="formSection">
+						<h4>Save As Draft?</h4>
+						<input type="checkbox" name="draft" />
+					</div>
 					<button type="submit">Add</button>
 		        </form>
 			</div>

@@ -28,20 +28,26 @@ class postController extends Controller
 
             $posts = array();
             foreach($tag->posts as $post){
-                array_push($posts, $post);
+
+                if($post->published === 1) {
+                  array_push($posts, $post);
+                }
 
                 //reverse the posts to show newest first
                 $posts = array_reverse($posts);
             }
         } else {
-            $posts = Post::all();
+            $posts = Post::where('published', 1)->get();
         }
 
         foreach($posts as $post){
             $post->post = json_decode($post->post);
         }
 
-        $posts = $posts->reverse();
+        //if it's not a tagged post we still need to reverse it
+        if(!$tag) {
+          $posts = $posts->reverse();
+        }
         return view('simpleBlog::home')->with('posts', $posts);
     }
 
@@ -79,6 +85,7 @@ class postController extends Controller
         $post->imageUrl = $imgUrl;
         $post->customUrl = $customUrl;
         $post->metaDescription = $metaDescription;
+        $post->published = $this->configureDraft($request->draft);
         $post->save();
         $request->session()->flash('status', 'Post Updated!');
         return redirect('blog/edit/' . $_POST['postId']);
@@ -101,6 +108,7 @@ class postController extends Controller
         $post->imageUrl = $imgUrl;
         $post->customUrl = $customUrl;
         $post->metaDescription = $metaDescription;
+        $post->published = $this->configureDraft($request->draft);
         $post->save();
 
         $post->generateTags($tags, $post->id);
@@ -128,5 +136,13 @@ class postController extends Controller
 
        $post->post = json_decode($post->post);
        return view('simpleBlog::post')->with('post', $post);
+    }
+
+    private function configureDraft($draft) {
+      if(!$draft) {
+        return true;
+      } else {
+        return false;
+      }
     }
 }

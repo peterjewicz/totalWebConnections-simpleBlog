@@ -14,7 +14,7 @@ class AddDraftToPostsTable extends Migration
     public function up()
     {
       Schema::table('simpleBlog_posts', function (Blueprint $table) {
-        $table->bool('published');
+        $table->boolean('published')->default(true);
       });
     }
 
