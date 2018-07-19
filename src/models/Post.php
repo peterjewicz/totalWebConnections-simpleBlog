@@ -13,6 +13,13 @@ class Post extends Model
         return $this->belongsToMany('totalWebConnections\simpleBlog\Models\Tag', 'simpleBlog_tagRelationships', 'post_id', 'tag_id');
     }
 
+
+    /**
+    * Generates the tags for a post on create
+    * @param String $tags a comma separated string of tags
+    * @param int $postId id of the post to add the tags to
+    * @return void
+    */
     public function generateTags($tags, $postId){
         $tags = explode(",", $tags);
 
@@ -45,7 +52,6 @@ class Post extends Model
     * gets the post exceprt
     * @param int excerptLength length of exceprt (Default 200)
     * @return string
-    *
     */
     public function getExcept($excerptLength = 200){
         return str_limit(strip_tags(html_entity_decode($this->post)), $limit = $excerptLength, $end = '...');

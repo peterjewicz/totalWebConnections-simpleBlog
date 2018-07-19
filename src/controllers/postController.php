@@ -13,14 +13,6 @@ use totalWebConnections\simpleBlog\Models\TagRelationship;
 class postController extends Controller
 {
     public function index(){
-        // $exists = Storage::disk('s3')->exists('file.jpg');
-        // $test = Storage::disk('s3')->put('fbcover.jpg', public_path() . '/images/fbcover.jpg');
-        // $fileName = '../../../../public/images/fbcover.jpg';
-        // $path = Storage::putFile('test', file($fileName));
-        // var_dump($test);die;
-        // $exists = Storage::disk('s3')->exists('fbcover.jpg');
-        // $img = Storage::disk('s3')->get('fbcover.jpg');
-        // var_dump($path);
         $posts = Post::all();
         return view('simpleBlog::dashboard')->with('posts', $posts);
     }
